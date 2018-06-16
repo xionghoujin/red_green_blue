@@ -2,9 +2,7 @@ package com.bst.red_green_blue.config;
 
 
 import com.bst.red_green_blue.security.CustomUserService;
-import com.bst.red_green_blue.security.MyAuthenticationSuccessHandler;
 import com.bst.red_green_blue.security.MyPasswordEncoder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,8 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+
 
 
     @Bean
@@ -50,9 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")//自定义登录页
                 .failureUrl("/login?error")//自定义登录失败的页面
-                .successHandler(myAuthenticationSuccessHandler)//设置登录成功的处理器
                 .permitAll()//登录成功后允许所有的请求
-//                .defaultSuccessUrl("/welcome",true) //登录成功后跳转页
+                .defaultSuccessUrl("/welcome",true) //登录成功后跳转页
                 .permitAll()
                 .and()
                 .exceptionHandling()
