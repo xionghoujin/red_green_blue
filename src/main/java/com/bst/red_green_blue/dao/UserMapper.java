@@ -23,6 +23,9 @@ public interface UserMapper {
 //    @Select("SELECT * FROM user WHERE phone_number =#{phoneNumber}")
     User selectByPrimaryKey(String phoneNumber);
 
+    @Select("SELECT * FROM user WHERE username =#{username}")
+    User selectByUsername(String username);
+
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 
     int updateByExample(@Param("record") User record, @Param("example") UserExample example);

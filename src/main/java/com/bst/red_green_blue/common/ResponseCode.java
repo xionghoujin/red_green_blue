@@ -12,7 +12,8 @@ public enum ResponseCode  {
 
     SQL_EXCEPTION("20","团队名已存在"),
     UNKNOWN_EXCEPTION("21", "UNKNOWN_EXCEPTION") ,
-    TOKEN_EXCEPTION("22", "TOKEN_EXCEPTION") ;
+    TOKEN_EXCEPTION("22", "TOKEN_EXCEPTION") ,
+    ROLE_EXCEPTION("23","没有身份权限");
 
 
     private  String code;

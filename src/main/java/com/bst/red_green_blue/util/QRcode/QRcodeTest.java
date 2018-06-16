@@ -7,7 +7,7 @@ package com.bst.red_green_blue.util.QRcode;
  */
 public class QRcodeTest {
     public static void main(String[] args) {
-        QRcodePojo pojo = new QRcodePojo(300,300,"png","","h");
+        QRcodePojo pojo = new QRcodePojo(300,300,"png","回家的信号","h");
         QRcodeUtils.CreateQRcode(pojo);
     }
 }

@@ -11,6 +11,7 @@ import com.bst.red_green_blue.util.GsonUtil;
 import com.sun.activation.registries.MailcapParseException;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,8 +50,9 @@ public class FacilityController {
     }
 
 
-    @ApiOperation(value = "获取已审核的公共设施申请列表")
+    @ApiOperation(value = "获取已审核的公共设施申请列表 ADMIN")
     @GetMapping(value = "checkPublicFacilityList")
+    @PreAuthorize("hasRole('ADMIN')")
     public ServerResponse<List<PublicFacilityManageVo>> checkPublicFacilityList(String token) throws MailcapParseException {
         if (token == null) {
             return ServerResponse.createByErrorMessage("请先登录");
@@ -91,8 +93,9 @@ public class FacilityController {
         return iFacilityService.checkPublicFacility(id, status);
     }
 
-    @ApiOperation(value = "获取我的公共设施申请列表")
+    @ApiOperation(value = "获取我的公共设施申请列表 USER")
     @PostMapping(value = "getPublicFacilityList")
+    @PreAuthorize("hasRole('USER')")
     public ServerResponse<List> getPublicFacilityList(String token) {
         if (token == null) {
             return ServerResponse.createByErrorMessage("请先登录");

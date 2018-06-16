@@ -18,6 +18,14 @@ import org.springframework.stereotype.Component;
  *
  * @author 熊厚谨
  */
+/**
+ * 思路：
+ *用切面做鉴权当controller的参数中带有token就会被拦截
+ *把用户对象转化成json加入到token中
+ *然后解密即可得到用户角色信息
+ * 把token中的role字段修改成解密之后的值
+ *
+ */
 @Slf4j
 @Aspect
 @Component
@@ -29,6 +37,13 @@ public class TokenValidator {
         identityVerification(token);
         int role = authorityJudge(token);
         token.setRole(role);
+        /**
+         * TODO
+         * 在这一步可以将权限查询
+         * 然后将查询出来的权限添加到token的Permission中
+         *r然后通过获取访问的url判断是否在有权访问
+         */
+
         //一定要这一步，调用这个方法才会进行下一步
         retVal = pjp.proceed();
         return retVal;

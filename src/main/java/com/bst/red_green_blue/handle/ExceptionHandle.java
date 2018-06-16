@@ -2,9 +2,8 @@ package com.bst.red_green_blue.handle;
 
 import com.bst.red_green_blue.common.ResponseCode;
 import com.bst.red_green_blue.common.ServerResponse;
-import com.bst.red_green_blue.handle.exception.CustomException;
 import com.sun.activation.registries.MailcapParseException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -35,4 +34,14 @@ public class ExceptionHandle {
                     ,ResponseCode.TOKEN_EXCEPTION.getMessage());
 
     }
+
+    @ExceptionHandler(value = AccessDeniedException.class)
+    public ServerResponse handle(AccessDeniedException e) {
+        System.out.println(e.getClass());
+        System.out.println("ROLE_EXCEPTION");
+        return ServerResponse.createByErrorCodeMessage(Integer.parseInt(ResponseCode.ROLE_EXCEPTION.getCode())
+                ,ResponseCode.ROLE_EXCEPTION.getMessage());
+
+    }
+
 }

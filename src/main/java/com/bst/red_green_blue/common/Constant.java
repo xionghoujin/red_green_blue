@@ -6,6 +6,13 @@ package com.bst.red_green_blue.common;
  */
 public class Constant {
     public static final String CURRENT_USER = "currentUser";
+
+    public static final String AUTH_KEY= "authorization";
+    /**JWT 秘钥*/
+    public static final String SECRET = "XX#$%()(#*!()!KL<><MQLMNQNQJQK sdfkjsdrow32234545fdf>?N<:{LWPW";
+    /**jwt失效时间 4个小时*/
+    public static final Long JWT_EXPIRE = 4 * 60 * 60 * 1000L;
+
     public interface Role {
         //普通用户
         int ROLE_CUSTOMER = 1;
